@@ -131,7 +131,7 @@ function ConfigurationInstructions() {
 
 function DiffusionApp() {
     return <>
-        <a href={"https://github.com/sebastianaigner/stablediff-web-extended"}><img id={"pr-request"}
+        <a href={"https://github.com/SebastianAigner/stable-diffusion-web-extended"}><img id={"pr-request"}
                                                                                     src={"https://img.shields.io/badge/Ideas%20for%20improvements%3F-Send%20a%20PR-brightgreen"}/></a>
         <div id="search">
             <SetupInstruction/>
