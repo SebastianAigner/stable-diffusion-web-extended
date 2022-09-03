@@ -14,7 +14,15 @@ An alternative frontend for [lstein/stable-diffusion](https://github.com/lstein/
 
 ## Usage
 
-As a user, simply visit the hosted instance, and follow the setup instructions to make sure it works with your local
+```bash
+$ npm install # or pnpm install or yarn install
+```
+
+Then, run:
+
+#### `yarn dev`, `npm dev` or `npm start`
+
+Then, follow the setup instructions to make sure it works with your local
 installation of stable-diffusion.
 
 ## Contributing
