@@ -100,6 +100,7 @@ function SetupInstruction() {
                     href={"https://gist.github.com/SebastianAigner/bd1da9f1210e419a4a53c8ae4275a102"}>dream_web_patched.py</a> into
                     your scripts folder or manually apply the changes to your dream_web.py file.
                 </li>
+                <li>In your browser, click the lock icon 🔒 in the URL bar, and select "Site settings". Switch "Insecure content" to "Allow". This allows this website to communicate with the stable-diffusion server running locally on your machine.</li>
                 <li>Run your application and move on to the "Configuration" section.</li>
                 <li onClick={() => setShowSetup(false)}><i>Click here to hide these instructions.</i></li>
 

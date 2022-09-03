@@ -14,6 +14,12 @@ An alternative frontend for [lstein/stable-diffusion](https://github.com/lstein/
 
 ## Usage
 
+### Using the hosted version
+For regular usage, simply open [the interface in your browser](https://sebastianaigner.github.io/stable-diffusion-web-extended/) and **follow the setup instructions**.
+
+### Running a local copy 
+If you'd like to use a local copy instead, check out the project and run:
+
 ```bash
 $ npm install # or pnpm install or yarn install
 ```

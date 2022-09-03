@@ -8,7 +8,7 @@ ul, li {
     text-align: left;
 }
 #search {
-    margin-top: 20vh;
+    margin-top: 10vh;
     margin-left: auto;
     margin-right: auto;
     max-width: 800px;
@@ -20,6 +20,10 @@ fieldset {
 }
 #fieldset-search {
     display: flex;
+}
+
+li {
+    margin-bottom: 20px;
 }
 
 .gen-image p {

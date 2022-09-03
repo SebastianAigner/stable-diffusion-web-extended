@@ -1,0 +1,2 @@
+vite build
+./deploy.sh
