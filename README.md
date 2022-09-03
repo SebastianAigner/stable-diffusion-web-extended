@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 
-An alternative frontend for [lstein/stable-diffusion](https://github.com/lstein/stable-diffusion)m kaing .
+An alternative frontend for [lstein/stable-diffusion](https://github.com/lstein/stable-diffusion).
 
 ## Features:
 
