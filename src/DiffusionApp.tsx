@@ -9,7 +9,11 @@ interface ImageConfiguration {
     prompt: string;
     steps: string;
     iterations: string;
-    height: string
+    strength: string;
+    height: string;
+    sampler: string;
+    upscale_level: string,
+    upscale_strength: string,
 }
 
 const [currentProcessedElement, setCurrentProcessedElement] = createSignal<ImageConfiguration | undefined>(undefined)
@@ -18,6 +22,7 @@ const myTaskQueue = new CompletionAwaitingQueue<ImageConfiguration, any>(
     (i) => requestImage(i),
     () => {
         const l = latestConfig()
+        return []
         if (l == null) return []
         return [{
             value: l,
@@ -49,7 +54,13 @@ async function requestImage(i: ImageConfiguration) {
         },
         body: stringified
     })
-    const json = await response.json()
+    const text = await response.text() // TODO: Why on earth does their server send "a bunch of objects separated by newlines"? :(
+    console.log(text);
+    const lines = text.split("\n")
+    lines.pop() // empty newline
+    const obj = lines.pop()!! // object
+    console.log(obj);
+    const json = await JSON.parse(obj)
     console.log('Success', json)
     setImages([json, ...images()])
 }
@@ -63,7 +74,11 @@ function handleSubmit(e: Event) {
         prompt: `${prompt()}`,
         seed: `${seed()}`,
         steps: `${steps()}`,
-        width: `${width()}`
+        width: `${width()}`,
+        strength: `0.75`, // todo
+        sampler: "k_lms", // todo
+        upscale_level: "", // todo
+        upscale_strength: "", // todo
     }
     setLatestConfig(obj)
     enqueueImageConfiguration(obj)
@@ -225,10 +240,10 @@ function DiffusionApp() {
             <For each={images()} fallback={<div id="no-results-message"><i><p>No results...</p></i></div>}>
                 {(item, index) => (
                     <div class={"gen-image"}>
-                    <img src={`${endpoint()}/${item.outputs[0][0]}`}/>
+                    <img src={`${endpoint()}/${item.url}`}/>
                         <br/>
                         <div>
-                            <p>{item.outputs[0][2]["prompt"]}</p>
+                            <p>{item.config.prompt}</p>
                         </div>
                     </div>
                 )}
@@ -243,8 +258,6 @@ function TaskQueue() {
     const queueUpdater =
         setInterval(() => {
             setCurrentTaskQueueView([...myTaskQueue.internalQueue]) // TODO: This should absolutely be reactive.
-            console.log(myTaskQueue.internalQueue)
-            console.log(currentProcessedElement())
         }, 200)
     onCleanup(() => clearInterval(queueUpdater))
 
